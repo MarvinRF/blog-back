@@ -4,4 +4,9 @@
 GET {{baseUrl}}
 ###
 POST {{baseUrl}}/auth/login
+Content-Type: application/json
+{
+    "email": "user@example.com",
+    "password": "password123"
+}
 ###
