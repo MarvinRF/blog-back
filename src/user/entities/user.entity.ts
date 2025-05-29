@@ -20,7 +20,7 @@ export class User {
   password: string;
 
   @Column({ default: false })
-  forcelogout: boolean;
+  forceLogout: boolean;
 
   @CreateDateColumn({ default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
