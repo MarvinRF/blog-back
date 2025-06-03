@@ -1,7 +1,9 @@
+import { User } from 'src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -36,4 +38,6 @@ export class Post {
   updatedAt: Date;
 
   //many to One <- authorId <- FK para User <- muitos posts para 1 user
+  @ManyToOne(() => User)
+  author: User;
 }
