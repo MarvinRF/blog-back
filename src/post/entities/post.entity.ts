@@ -38,6 +38,6 @@ export class Post {
   updatedAt: Date;
 
   //many to One <- authorId <- FK para User <- muitos posts para 1 user
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
   author: User;
 }

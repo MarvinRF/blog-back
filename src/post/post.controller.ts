@@ -86,4 +86,28 @@ export class PostController {
       data: new PostResponseDto(post),
     };
   }
+
+  @Get(':slug')
+  async findOnePublished(@Param('slug') slug: string) {
+    const post = await this.postService.findOneOrFail({
+      slug,
+      published: true,
+    });
+    return {
+      success: true,
+      message: 'Post found successfully',
+      data: new PostResponseDto(post),
+    };
+  }
+
+  @Get()
+  async findAllPublished() {
+    const posts = await this.postService.findAll({ published: true });
+
+    return {
+      success: true,
+      message: 'Posts fetched successfully',
+      data: posts.map(post => new PostResponseDto(post)),
+    };
+  }
 }

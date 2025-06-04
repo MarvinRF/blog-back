@@ -48,6 +48,15 @@ export class PostService {
     return posts;
   }
 
+  async findAll(postData: Partial<Post>) {
+    const posts = await this.postRepository.find({
+      where: postData,
+      order: { createdAt: 'DESC' },
+      relations: ['author'],
+    });
+    return posts;
+  }
+
   async findOneOwnedOrFail(postData: Partial<Post>, author: User) {
     const post = await this.findOneOwned(postData, author);
     if (!post) {
