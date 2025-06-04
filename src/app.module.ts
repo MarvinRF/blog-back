@@ -4,6 +4,7 @@ import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true, //se cair em prod = 1:1 com RH
       autoLoadEntities: true,
     }),
+    UploadModule,
   ],
   controllers: [],
   providers: [],
