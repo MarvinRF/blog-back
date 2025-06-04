@@ -14,6 +14,47 @@ export class PostService {
     private readonly postRepository: Repository<Post>,
   ) {}
 
+  async findOneOrFail(postData: Partial<Post>) {
+    const post = await this.findOne(postData);
+    if (!post) {
+      throw new BadRequestException('Post not found');
+    }
+    return post;
+  }
+
+  async findOne(postData: Partial<Post>) {
+    const post = await this.postRepository.findOne({
+      where: postData,
+      relations: ['author'],
+    });
+    return post;
+  }
+
+  async findOneOwned(postData: Partial<Post>, author: User) {
+    const post = await this.postRepository.findOne({
+      where: { ...postData, author: { id: author.id } },
+      relations: ['author'],
+    });
+    return post;
+  }
+
+  async findAllOwned(author: User) {
+    const posts = await this.postRepository.find({
+      where: { author: { id: author.id } },
+      order: { createdAt: 'DESC' },
+      relations: ['author'],
+    });
+    return posts;
+  }
+
+  async findOneOwnedOrFail(postData: Partial<Post>, author: User) {
+    const post = await this.findOneOwned(postData, author);
+    if (!post) {
+      throw new BadRequestException('Post not found');
+    }
+    return post;
+  }
+
   async create(dto: CreatePostDto, author: User) {
     const post = this.postRepository.create({
       slug: createSlugFromText(dto.title),
