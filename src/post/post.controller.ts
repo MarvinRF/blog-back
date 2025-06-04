@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseUUIDPipe,
@@ -24,7 +25,11 @@ export class PostController {
   @Post('me')
   async create(@Req() req: AuthenticatedRequest, @Body() dto: CreatePostDto) {
     const post = await this.postService.create(dto, req.user);
-    return new PostResponseDto(post);
+    return {
+      success: true,
+      message: 'Post created successfully',
+      data: new PostResponseDto(post),
+    };
   }
 
   @UseGuards(jwtAuthGuard)
@@ -34,14 +39,23 @@ export class PostController {
     @Param('id', ParseUUIDPipe) id: string,
   ) {
     const post = await this.postService.findOneOwnedOrFail({ id }, req.user);
-    return new PostResponseDto(post);
+    return {
+      success: true,
+      message: 'Post found successfully',
+      data: new PostResponseDto(post),
+    };
   }
 
   @UseGuards(jwtAuthGuard)
   @Get('me')
   async findAllOwned(@Req() req: AuthenticatedRequest) {
     const posts = await this.postService.findAllOwned(req.user);
-    return posts.map(post => new PostResponseDto(post));
+
+    return {
+      success: true,
+      message: 'Posts fetched successfully',
+      data: posts.map(post => new PostResponseDto(post)),
+    };
   }
 
   @UseGuards(jwtAuthGuard)
@@ -52,6 +66,24 @@ export class PostController {
     @Body() dto: UpdatePostDto,
   ) {
     const post = await this.postService.update({ id }, dto, req.user);
-    return new PostResponseDto(post);
+    return {
+      success: true,
+      message: 'Post updated successfully',
+      data: new PostResponseDto(post),
+    };
+  }
+
+  @UseGuards(jwtAuthGuard)
+  @Delete('me/:id')
+  async remove(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    const post = await this.postService.remove({ id }, req.user);
+    return {
+      success: true,
+      message: 'Post deleted successfully',
+      data: new PostResponseDto(post),
+    };
   }
 }
