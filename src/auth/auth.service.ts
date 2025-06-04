@@ -1,4 +1,9 @@
-import { Injectable, Body, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  Body,
+  UnauthorizedException,
+  NotFoundException,
+} from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
 import { UserService } from 'src/user/user.service';
 import { HashingService } from 'src/common/hashing/hash.service';
@@ -40,5 +45,18 @@ export class AuthService {
     await this.userService.save(user);
 
     return { accessToken };
+  }
+
+  async logout(id: string) {
+    const user = await this.userService.findById(id);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    user.forceLogout = true;
+    const updatedUser = await this.userService.save(user);
+
+    return updatedUser;
   }
 }

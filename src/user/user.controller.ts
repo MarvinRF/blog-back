@@ -24,20 +24,32 @@ export class UserController {
   @Get('me')
   async findOne(@Req() req: AuthenticatedRequest) {
     const user = await this.userService.findOneByOrFail({ id: req.user.id });
-    return new UserResponseDto(user);
+    return {
+      success: true,
+      message: 'User fetched successfully',
+      data: new UserResponseDto(user),
+    };
   }
 
   @Post()
   async create(@Body() dto: CreateUserDto) {
     const user = await this.userService.create(dto);
-    return new UserResponseDto(user);
+    return {
+      success: true,
+      message: 'User Authenticated successfully',
+      data: new UserResponseDto(user),
+    };
   }
 
   @UseGuards(jwtAuthGuard)
   @Patch('me')
   async update(@Req() req: AuthenticatedRequest, @Body() dto: UpdateUserDto) {
     const user = await this.userService.update(req.user.id, dto);
-    return new UserResponseDto(user);
+    return {
+      success: true,
+      message: 'User updated successfully',
+      data: new UserResponseDto(user),
+    };
   }
 
   @UseGuards(jwtAuthGuard)
@@ -47,13 +59,21 @@ export class UserController {
     @Body() dto: UpdatePassWordDto,
   ) {
     const user = await this.userService.updatePassword(req.user.id, dto);
-    return new UserResponseDto(user);
+    return {
+      success: true,
+      message: 'Password updated successfully',
+      data: new UserResponseDto(user),
+    };
   }
 
   @UseGuards(jwtAuthGuard)
   @Delete('me')
   async remove(@Req() req: AuthenticatedRequest) {
     const user = await this.userService.remove(req.user.id);
-    return new UserResponseDto(user);
+    return {
+      success: true,
+      message: 'User deleted successfully',
+      data: new UserResponseDto(user),
+    };
   }
 }
