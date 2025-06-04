@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { User } from 'src/user/entities/user.entity';
 import { createSlugFromText } from 'src/common/utils/create-slug-from-text';
+import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
 export class PostService {
@@ -72,5 +73,21 @@ export class PostService {
         throw new BadRequestException('Error creating post');
       });
     return created;
+  }
+
+  async update(postData: Partial<Post>, dto: UpdatePostDto, author: User) {
+    if (Object.keys(dto).length === 0) {
+      throw new BadRequestException('No data to update');
+    }
+
+    const post = await this.findOneOwnedOrFail(postData, author);
+
+    post.title = dto.title ?? post.title;
+    post.excerpt = dto.excerpt ?? post.excerpt;
+    post.content = dto.content ?? post.content;
+    post.coverImageUrl = dto.coverImageUrl ?? post.coverImageUrl;
+    post.published = dto.published ?? post.published;
+
+    return this.postRepository.save(post);
   }
 }

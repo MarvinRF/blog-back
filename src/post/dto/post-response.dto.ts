@@ -19,7 +19,7 @@ export class PostResponseDto {
     this.content = post.content;
     this.excerpt = post.excerpt;
     this.coverImageUrl = post.coverImageUrl;
-    this.published = post.isPublished;
+    this.published = post.published;
     this.createdAt = post.createdAt;
     this.updatedAt = post.updatedAt;
     this.author = {

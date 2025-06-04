@@ -29,7 +29,7 @@ export class Post {
   coverImageUrl: string;
 
   @Column({ default: false })
-  isPublished: boolean;
+  published: boolean;
 
   @CreateDateColumn()
   createdAt: Date;
