@@ -21,7 +21,10 @@ export class CreatePostDto {
   @IsNotEmpty({ message: 'content should not be empty' })
   content: string;
 
-  @IsUrl({ require_tld: false }) //top level domain prohibits localhost e IP
+  @IsUrl(
+    { require_tld: false },
+    { message: 'Image URL must contain a valid URL' },
+  ) //top level domain prohibits localhost e IP
   @IsOptional()
   coverImageUrl: string;
 }
