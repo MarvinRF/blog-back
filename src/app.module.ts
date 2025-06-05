@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
@@ -28,6 +28,7 @@ import { APP_FILTER } from '@nestjs/core';
   ],
   controllers: [],
   providers: [
+    Logger,
     {
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
