@@ -1,98 +1,203 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
+<br>
+<h1 align="center">Backend para Blog com NestJS 🚀</h1>
+<br>
+Este projeto é uma API RESTful robusta construída com **NestJS**, projetada para
+servir como backend para uma aplicação de blog. Inclui funcionalidades
+essenciais como autenticação de usuários, gerenciamento de posts, upload de
+arquivos e muito mais.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![NestJS](https://img.shields.io/badge/NestJS-v11.0.1-red?style=for-the-badge&logo=nestjs)
+![TypeScript](https://img.shields.io/badge/TypeScript-v5.7.3-blue?style=for-the-badge&logo=typescript)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Ready-blue?style=for-the-badge&logo=postgresql)
+![License](https://img.shields.io/badge/License-UNLICENSED-lightgrey?style=for-the-badge)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## ✨ Features
 
-## Description
+- **🔐 Autenticação e Autorização:** Sistema completo de login com JSON Web
+  Tokens (JWT).
+- **👤 Gerenciamento de Usuários:** Operações CRUD para usuários, com hash de
+  senhas.
+- **✍️ Gerenciamento de Posts:** Operações CRUD completas para os posts do blog.
+- **⬆️ Upload de Arquivos:** Módulo dedicado para upload de mídias (ex: imagens
+  de capa para posts).
+- **🛡️ Segurança:**
+  - **Helmet:** Para proteção contra vulnerabilidades web comuns.
+  - **CORS:** Configuração de whitelist para permitir requisições de frontends
+    autorizados.
+  - **Rate Limiting (Throttler):** Proteção contra ataques de força bruta.
+- **✔️ Validação de Dados:** Uso de `class-validator` e `ValidationPipe` para
+  garantir a integridade dos dados de entrada.
+- **🔧 Configuração Centralizada:** Gerenciamento de variáveis de ambiente com
+  `@nestjs/config`.
+- **🐘 Banco de Dados:** Suporte para **PostgreSQL** e **SQLite** via TypeORM.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## 📋 Pré-requisitos
 
-```bash
-$ npm install
-```
+Antes de começar, você vai precisar ter instalado em sua máquina:
 
-## Compile and run the project
+- [Node.js](https://nodejs.org/en/) (v18 ou superior)
+- [NPM](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
+- Um cliente de banco de dados (como [DBeaver](https://dbeaver.io/)) e uma
+  instância de **PostgreSQL** ou **SQLite**.
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## ⚙️ Instalação e Configuração
 
-# production mode
-$ npm run start:prod
-```
+Siga os passos abaixo para configurar e rodar o projeto localmente.
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 🚀 Clonando o repositório e acessando o diretório
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+git clone https://seu-repositorio/nestjs-for-blog.git
+cd nestjs-for-blog
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+### 📦 Instalando dependências
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+npm install
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+---
 
-## Support
+### ⚙️ Configurando variáveis de ambiente
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+cp .env-example .env
+```
 
-## Stay in touch
+Agora edite o arquivo `.env` com os valores conforme seu ambiente local:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### `.env` – Variáveis disponíveis
 
-## License
+| Variável         | Descrição                                 | Exemplo                         |
+| ---------------- | ----------------------------------------- | ------------------------------- |
+| `DB_TYPE`        | Tipo do banco de dados                    | `postgres` ou `better-sqlite3`  |
+| `DB_HOST`        | Host do banco de dados                    | `localhost`                     |
+| `DB_PORT`        | Porta do banco de dados                   | `5432`                          |
+| `DB_USERNAME`    | Nome de usuário do banco                  | `meuuser`                       |
+| `DB_PASSWORD`    | Senha do banco                            | `senhasecreta`                  |
+| `DB_NAME`        | Nome do banco de dados                    | `meubanco`                      |
+| `JWT_SECRET`     | Chave secreta para assinar tokens JWT     | `minha-chave-super-secreta-123` |
+| `JWT_EXPIRATION` | Tempo de expiração do token               | `1d`, `7h`                      |
+| `APP_PORT`       | Porta em que a aplicação irá rodar        | `3001`                          |
+| `CORS_WHITELIST` | Origens permitidas (separadas por espaço) | `"http://localhost:3000"`       |
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
+
+### 🚀 Rodando a aplicação
+
+Modo desenvolvimento (com hot-reload):
+
+```bash
+npm run start:dev
+```
+
+Modo produção (requer build prévio):
+
+```bash
+npm run build
+npm run start:prod
+```
+
+Modo debug:
+
+```bash
+npm run start:debug
+```
+
+A aplicação estará disponível em: [http://localhost:3001](http://localhost:3001)
+(ou a porta definida em `APP_PORT`).
+
+---
+
+### 🧪 Rodando os testes
+
+Testes unitários:
+
+```bash
+npm run test
+```
+
+Testes com watch:
+
+```bash
+npm run test:watch
+```
+
+Cobertura de testes:
+
+```bash
+npm run test:cov
+```
+
+Testes end-to-end (e2e):
+
+```bash
+npm run test:e2e
+```
+
+---
+
+### 📂 Estrutura do Projeto
+
+```
+src/
+├───auth/         # Autenticação (login, guards, strategy)
+├───user/         # Gerenciamento de usuários
+├───post/         # Gerenciamento de posts
+├───upload/       # Lógica para upload de arquivos
+├───common/       # Módulos, filtros e utilitários compartilhados
+├───app.module.ts # Módulo raiz da aplicação
+└───main.ts       # Ponto de entrada da aplicação
+```
+
+---
+
+### 🌐 Endpoints da API
+
+#### Autenticação (`/auth`)
+
+- `POST /login` — Login e retorno de token JWT.
+
+#### Usuários (`/user`)
+
+- `POST /` — Cria um novo usuário.
+- `GET /` — Lista todos os usuários.
+- `GET /:id` — Busca um usuário por ID.
+- `PATCH /:id` — Atualiza dados de um usuário.
+- `DELETE /:id` — Remove um usuário.
+- `PATCH /password` — Atualiza a senha do usuário autenticado.
+
+#### Posts (`/post`)
+
+- `POST /` — Cria um post (autenticado).
+- `GET /` — Lista todos os posts.
+- `GET /:id` — Busca um post por ID.
+- `PATCH /:id` — Atualiza um post (autenticado + autor).
+- `DELETE /:id` — Remove um post (autenticado + autor).
+
+#### Upload (`/upload`)
+
+- `POST /` — Upload de arquivos.
+
+---
+
+### 📄 Licença
+
+Este projeto está sob a licença **UNLICENSED**.
+
+---
+
+Se quiser, posso converter isso em um README.md formatado e traduzido pt-en
+usando seu padrão `{ pt, en }`. Só avisar.
