@@ -14,7 +14,7 @@ arquivos e mais.
 <img src="https://img.shields.io/badge/NestJS-v11.0.1-red?style=for-the-badge&logo=nestjs" />
 <img src="https://img.shields.io/badge/TypeScript-v5.7.3-blue?style=for-the-badge&logo=typescript" />
 <img src="https://img.shields.io/badge/PostgreSQL-Ready-blue?style=for-the-badge&logo=postgresql" />
-<img src="https://img.shields.io/badge/License-UNLICENSED-lightgrey?style=for-the-badge" />
+<img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
 
 </div>
 
@@ -168,38 +168,67 @@ src/
 
 ---
 
-### 🌐 Endpoints da API
-
-#### Autenticação (`/auth`)
-
-- `POST /login` — Login e retorno de token JWT.
-
-#### Usuários (`/user`)
-
-- `POST /` — Cria um novo usuário.
-- `GET /` — Lista todos os usuários.
-- `GET /:id` — Busca um usuário por ID.
-- `PATCH /:id` — Atualiza dados de um usuário.
-- `DELETE /:id` — Remove um usuário.
-- `PATCH /password` — Atualiza a senha do usuário autenticado.
-
-#### Posts (`/post`)
-
-- `POST /` — Cria um post (autenticado).
-- `GET /` — Lista todos os posts.
-- `GET /:id` — Busca um post por ID.
-- `PATCH /:id` — Atualiza um post (autenticado + autor).
-- `DELETE /:id` — Remove um post (autenticado + autor).
-
-#### Upload (`/upload`)
-
-- `POST /` — Upload de arquivos.
+Perfeito. Abaixo está a seção `🌐 Endpoints da API` **totalmente atualizada**
+com base nas novas rotas e estrutura que você forneceu. Os métodos HTTP e rotas
+estão descritos de forma profissional, seguindo a ordem correta e respeitando o
+escopo de autenticação (`Aberta` ou `JWT`).
 
 ---
 
+### 🌐 Endpoints da API
+
+> Base URL: `http://localhost:3000/` Porta padrão: `80` (HTTP) ou `443` (HTTPS)
+
+---
+
+#### Autenticação (`/auth`)
+
+| Método | Rota          | Descrição           | Acesso |
+| ------ | ------------- | ------------------- | ------ |
+| POST   | `/auth/login` | Autentica o usuário | Aberta |
+
+---
+
+#### Usuários (`/user`)
+
+| Método | Rota                | Descrição            | Acesso |
+| ------ | ------------------- | -------------------- | ------ |
+| POST   | `/user/`            | Cria um novo usuário | Aberta |
+| GET    | `/user/me`          | Ver dados do usuário | JWT    |
+| PATCH  | `/user/me`          | Atualiza o usuário   | JWT    |
+| DELETE | `/user/me`          | Apaga o usuário      | JWT    |
+| PATCH  | `/user/me/password` | Atualiza a senha     | JWT    |
+
+---
+
+#### Posts (`/post`)
+
+| Método | Rota             | Descrição                          | Acesso |
+| ------ | ---------------- | ---------------------------------- | ------ |
+| GET    | `/post/`         | Lista todos os posts               | Aberta |
+| GET    | `/post/:slug`    | Visualiza um post específico       | Aberta |
+| GET    | `/post/me`       | Lista posts do usuário autenticado | JWT    |
+| POST   | `/post/me`       | Cria um novo post                  | JWT    |
+| GET    | `/post/me/:uuid` | Visualiza um post do usuário       | JWT    |
+| PATCH  | `/post/me/:uuid` | Atualiza um post do usuário        | JWT    |
+| DELETE | `/post/me/:uuid` | Apaga um post do usuário           | JWT    |
+
+---
+
+#### Upload de Arquivos (`/upload`)
+
+| Método | Rota                 | Descrição                    | Acesso |
+| ------ | -------------------- | ---------------------------- | ------ |
+| POST   | `/upload`            | Envia imagem                 | JWT    |
+| GET    | `/uploads/:filename` | Visualiza imagem (via NGINX) | Aberta |
+
+---
+
+Se quiser, posso gerar uma tabela Swagger-like em JSON ou YAML também.
+
 ### 📄 Licença
 
-Este projeto está sob a licença **UNLICENSED**.
+Este projeto está licenciado sob os termos da [MIT License](./LICENSE).
 
 ---
 
