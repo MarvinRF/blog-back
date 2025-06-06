@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { fileTypeFromBuffer } from 'file-type';
+
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { generateRandomSuffix } from 'src/common/utils/generate-random-suffix';
@@ -17,6 +17,8 @@ export class UploadService {
         'File size exceeds the maximum allowed size',
       );
     }
+    // 🚀 GAMBIARRA - Importação dinâmica do file-type
+    const { fileTypeFromBuffer } = await import('file-type');
 
     const fileType = await fileTypeFromBuffer(file.buffer);
     if (

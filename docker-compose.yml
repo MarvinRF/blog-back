@@ -1,0 +1,40 @@
+services:
+  # Serviço da sua API NestJS
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nestjs-for-blog
+    # depends_on garante que o banco de dados inicie antes da sua API
+    depends_on:
+      - db
+    ports:
+      # O .env diz APP_PORT=3001, então mapeamos a porta 3001 do contêiner
+      - '3001:3001'
+    # Carrega as variáveis do seu arquivo .env
+    env_file:
+      - .env
+    # SOBRESCREVE a variável DB_HOST para usar o nome do serviço do banco
+    environment:
+      - DB_HOST=db
+
+  # Serviço do Banco de Dados PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: meu-blog-nestjs-db
+    environment:
+      # Essas variáveis DEVEM ser iguais às do seu arquivo .env
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      # Expõe a porta do Postgres para que você possa acessá-lo da sua máquina (com DBeaver, etc)
+      - '5432:5432'
+    volumes:
+      # Garante que os dados do seu banco não sejam perdidos ao reiniciar o contêiner
+      - postgres_data:/var/lib/postgresql/data
+
+# 3. Declaração do Volume
+# O Docker gerencia esse volume para persistir os dados do banco
+volumes:
+  postgres_data:
