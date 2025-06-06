@@ -31,7 +31,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      synchronize: true, //se cair em prod = 1:1 com RH
+      synchronize: false, //se cair em prod = 1:1 com RH
       autoLoadEntities: true,
     }),
     UploadModule,
