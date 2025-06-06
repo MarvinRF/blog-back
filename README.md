@@ -4,15 +4,19 @@
 <br>
 <h1 align="center">Backend para Blog com NestJS 🚀</h1>
 <br>
-Este projeto é uma API RESTful robusta construída com **NestJS**, projetada para
+Este projeto é uma API RESTful robusta construída com NestJS, projetada para
 servir como backend para uma aplicação de blog. Inclui funcionalidades
 essenciais como autenticação de usuários, gerenciamento de posts, upload de
-arquivos e muito mais.
+arquivos e mais.
+<br><br>
 
-![NestJS](https://img.shields.io/badge/NestJS-v11.0.1-red?style=for-the-badge&logo=nestjs)
-![TypeScript](https://img.shields.io/badge/TypeScript-v5.7.3-blue?style=for-the-badge&logo=typescript)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Ready-blue?style=for-the-badge&logo=postgresql)
-![License](https://img.shields.io/badge/License-UNLICENSED-lightgrey?style=for-the-badge)
+<div align="center">
+<img src="https://img.shields.io/badge/NestJS-v11.0.1-red?style=for-the-badge&logo=nestjs" />
+<img src="https://img.shields.io/badge/TypeScript-v5.7.3-blue?style=for-the-badge&logo=typescript" />
+<img src="https://img.shields.io/badge/PostgreSQL-Ready-blue?style=for-the-badge&logo=postgresql" />
+<img src="https://img.shields.io/badge/License-UNLICENSED-lightgrey?style=for-the-badge" />
+
+</div>
 
 ## ✨ Features
 
