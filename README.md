@@ -231,6 +231,3 @@ Se quiser, posso gerar uma tabela Swagger-like em JSON ou YAML também.
 Este projeto está licenciado sob os termos da [MIT License](./LICENSE).
 
 ---
-
-Se quiser, posso converter isso em um README.md formatado e traduzido pt-en
-usando seu padrão `{ pt, en }`. Só avisar.
